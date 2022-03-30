@@ -32,6 +32,7 @@ class UserRegister extends Component {
     render() {
         return (
             <ScrollView style = {styles.container}>
+              <Text>TEST ! GREAT! </Text>
             </ScrollView>
         );    
     }

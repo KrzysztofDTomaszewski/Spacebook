@@ -14,7 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Screen Imports
-import UserRegister from './components/screens/UserRegistery';
+import UserRegistery from './components/screens/UserRegistery';
 
 // Stack Navigator Initialised
 const Stack = createStackNavigator();
