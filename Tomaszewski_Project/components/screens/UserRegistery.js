@@ -13,7 +13,7 @@ import React from 'react';
 import { Component } from 'react';
 
 // Functionality Imports
-import { ScrollView, StyleSheet, Text, TouchableOpacity, ToastAndroid } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, ToastAndroid, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 // State constructor initalise variables as state objects for later user input 
@@ -77,8 +77,9 @@ class UserRegister extends Component {
 
       return (
             <ScrollView style = {styles.container}>
-              
 
+              <Image style={styles.logo} source={require('../photos/Spacebook_Reg.png')} />
+              
               <TextInput style = {styles.userInput} placeholder={'Name:'} 
                   onChangeText = {(firstName) => this.setState({firstName})} 
                   value={this.state.firstName} placeholderTextColor='#898F9C' 
@@ -90,6 +91,7 @@ class UserRegister extends Component {
                   value={this.state.lastName} placeholderTextColor='#898F9C'
               />
               
+
 
               <TextInput style = {styles.userInput} placeholder={'Email:'} 
                   onChangeText = {(email) => this.setState({email})} 
@@ -105,8 +107,13 @@ class UserRegister extends Component {
 
 
               <TouchableOpacity  style = {styles.submitButton} onPress={() => this.onClickRegister()}> 
-                <Text style = {styles.buttonText}>Register!</Text>
+                <Text style = {styles.buttonText}>Register</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity style = {styles.submitButton} onPress={() => Stack.navigate('UserLogin')}>
+                    <Text style = {styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+
 
 
             </ScrollView>
@@ -114,10 +121,17 @@ class UserRegister extends Component {
     }
 }
 
-// Stylesheet for UserRegistery
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+    }, 
+
+    logo: {
+      marginVertical: 5,
+      alignSelf: 'center',
+      resizeMode: 'stretch',
+      height: 50,
+      width: 85,
     },
 
     userInput: {
@@ -136,6 +150,13 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 5,
     backgroundColor: '#4267B2',
+  },
+
+  loginButton: {
+    alignSelf: 'center',
+    padding: 12,
+    borderRadius: 5,
+    backgroundColor: 'grey',
   },
 
   buttonText: {
