@@ -18,6 +18,7 @@ import UserRegistery from './components/screens/UserRegistery';
 import UserLogin from './components/screens/UserLogin';
 import UserLogout from './components/screens/UserLogout';
 import PatchUserDetails from './components/screens/PatchUserDetails';
+import Account from './components/screens/Account';
 import Home from './components/screens/Home';
 
 // Because RN is a pile of s
@@ -44,6 +45,7 @@ class App extends React.Component {
             <Stack.Screen name="UserLogout" component={UserLogout} options={{title: 'Logout'}}/>
             <Stack.Screen name="Home" component={Home} options={{title: 'Home Page'}}/>
             <Stack.Screen name="PatchUserDetails" component={PatchUserDetails} options={{title: 'Patch Details'}}/>
+            <Stack.Screen name="Account" component={Account} options={{title: 'Account Details'}}/>
           
           </Stack.Navigator>
         </NavigationContainer>
