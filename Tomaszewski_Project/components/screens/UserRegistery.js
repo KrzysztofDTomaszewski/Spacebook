@@ -13,7 +13,7 @@ import React from 'react';
 import { Component } from 'react';
 
 // Functionality Imports
-import { ScrollView, StyleSheet, Text, TouchableOpacity, ToastAndroid, Image } from 'react-native';
+import { View, ScrollView, StyleSheet, Text, TouchableOpacity, ToastAndroid, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 // State constructor initalise variables as state objects for later user input 
@@ -49,15 +49,20 @@ class UserRegister extends Component {
           // Standard Android Toast short time frame pop up, to let user know that the request has reached the server
           .then((server) => {
               if(server.status === 201) { return server.json(); }
+
               else if (server.status === 400) { throw "Bad Request"; }
+              
               else if (server.status === 500) {throw "Server Error"}
+
               else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
           })
 
 
           // Prompt User on bottom of App with AndroidToast popup
           .then((serverResponseJSON) => {
-              ToastAndroid.show("User Created!",ToastAndroid.SHORT);
+
+
+              ToastAndroid.show("Success!",ToastAndroid.SHORT);
               this.props.navigation.navigate("Home");
           })
 
@@ -65,7 +70,6 @@ class UserRegister extends Component {
           // Console log exceptions for debugging
           .catch((error) => {
               console.log(error);
-              ToastAndroid.show(error, ToastAndroid.SHORT);
           });
       };
       
@@ -105,15 +109,33 @@ class UserRegister extends Component {
                   secureTextEntry = {true} 
               />
 
+             <View style = {styles.spaceButton}></View>
 
-              <TouchableOpacity  style = {styles.submitButton} onPress={() => this.onClickRegister()}> 
-                <Text style = {styles.buttonText}>Register</Text>
-              </TouchableOpacity>
 
-              <TouchableOpacity style = {styles.submitButton} onPress={() => Stack.navigate('UserLogin')}>
-                    <Text style = {styles.buttonText}>Login</Text>
-                </TouchableOpacity>
+              <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
 
+                    <TouchableOpacity  style = {styles.submitButton} onPress={() => this.onClickRegister()}> 
+                        <Text style = {styles.buttonText}>Register</Text>
+                    </TouchableOpacity>
+
+                  </View>
+
+
+                  <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
+                  <View style={{ flex: 1}}>
+
+                    <TouchableOpacity style = {styles.submitButton} onPress={() => Stack.navigate('UserLogin')}>
+                      <Text style = {styles.buttonText}>Login</Text>
+                   </TouchableOpacity>
+
+                  </View>
+              </View>
+
+              
+
+
+            
 
 
             </ScrollView>
@@ -134,6 +156,14 @@ const styles = StyleSheet.create({
       width: 85,
     },
 
+    buttonSpace: {
+      padding:5,
+    },
+
+    spaceButton: {
+      padding:10,
+    },
+    
     userInput: {
       alignSelf: "center",
       justifyContent: 'center',
@@ -160,6 +190,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
+    color: 'white',
     alignSelf: 'center',
     fontSize: 18,
   }

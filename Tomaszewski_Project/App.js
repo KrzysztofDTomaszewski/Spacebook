@@ -15,6 +15,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // Screen Imports
 import UserRegistery from './components/screens/UserRegistery';
+import UserLogin from './components/screens/UserLogin';
+import UserLogout from './components/screens/UserLogout';
 import Home from './components/screens/Home';
 
 // Because RN is a pile of s
@@ -29,7 +31,7 @@ const Stack = createStackNavigator();
 
 
 
-// Main Screen Loader Class
+// Entry Point == First Screen
 class App extends React.Component {
   render() {
     return (
@@ -37,6 +39,8 @@ class App extends React.Component {
           <Stack.Navigator>
 
             <Stack.Screen name="UserRegistery" component={UserRegistery} options={{title: 'Registry Form'}}/>
+            <Stack.Screen name="UserLogin" component={UserLogin} options={{title: 'Login Form'}}/>
+            <Stack.Screen name="UserLogout" component={UserLogout} options={{title: 'Logout'}}/>
             <Stack.Screen name="Home" component={Home} options={{title: 'Home Page'}}/>
           
           </Stack.Navigator>
