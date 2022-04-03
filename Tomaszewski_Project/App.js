@@ -17,6 +17,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import UserRegistery from './components/screens/UserRegistery';
 import UserLogin from './components/screens/UserLogin';
 import UserLogout from './components/screens/UserLogout';
+import PatchUserDetails from './components/screens/PatchUserDetails';
 import Home from './components/screens/Home';
 
 // Because RN is a pile of s
@@ -38,10 +39,11 @@ class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator>
 
-            <Stack.Screen name="UserRegistery" component={UserRegistery} options={{title: 'Registry Form'}}/>
-            <Stack.Screen name="UserLogin" component={UserLogin} options={{title: 'Login Form'}}/>
+            <Stack.Screen name="UserRegistery" component={UserRegistery} options={{title: 'Spacebook Register'}}/>
+            <Stack.Screen name="UserLogin" component={UserLogin} options={{title: 'Spacebook Login'}}/>
             <Stack.Screen name="UserLogout" component={UserLogout} options={{title: 'Logout'}}/>
             <Stack.Screen name="Home" component={Home} options={{title: 'Home Page'}}/>
+            <Stack.Screen name="PatchUserDetails" component={PatchUserDetails} options={{title: 'Patch Details'}}/>
           
           </Stack.Navigator>
         </NavigationContainer>

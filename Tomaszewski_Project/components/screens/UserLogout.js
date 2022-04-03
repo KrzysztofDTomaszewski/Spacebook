@@ -24,6 +24,8 @@ class UserLogout extends Component {
 
     killUserSession = async () => {
         const xAuthToken = await AsyncStorage.getItem('@session_token');
+
+        
         console.log("Session Ended "+xAuthToken);
         return fetch('http://10.0.2.2:3333/api/1.0.0/logout', {
             method: 'post',

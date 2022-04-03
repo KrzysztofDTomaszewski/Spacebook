@@ -181,5 +181,5 @@ const styles = StyleSheet.create({
   }
 });
 
-export default UserLogin
+export default UserLogin;
 

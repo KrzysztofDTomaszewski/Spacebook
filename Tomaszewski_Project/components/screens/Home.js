@@ -12,7 +12,7 @@ import React from 'react'
 import { Component } from 'react'
 
 // Function Components
-import { Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 
 class Home extends Component {
     constructor (props) {
@@ -25,16 +25,52 @@ class Home extends Component {
         return (
           
             <ScrollView style = {styles.container}> 
+                <Text style = {styles.headerText}>Welcome to Spacebook!</Text>
+                
+
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
+
+                  <TouchableOpacity style = {styles.patchDetailsButton} onPress={() => Stack.navigate('Account')}>
+                    <Text style = {styles.patchDetailsButtonText}>Account</Text>
+                  </TouchableOpacity>
+                   
+                </View>
 
 
-                <Text>Welcome to Spacebook!</Text>
+                  <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
+                  <View style={{ flex: 1}}>
 
+                  <TouchableOpacity style = {styles.logoutButton} onPress={() => Stack.navigate('UserLogout')}>
+                    <Text style = {styles.logoutButtonText}>Logout</Text>
+                  </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.submitButton} onPress={() => Stack.navigate('UserLogout')}>
-                    <Text style = {styles.buttonText}>Logout</Text>
-                </TouchableOpacity>
+                  
+                  </View>
+              </View>
 
+              <View style={styles.space}></View>
 
+              <View style={{flexDirection: "row"}}>
+                  <View style={{flex: 1}}>
+
+                  <TouchableOpacity style = {styles.patchDetailsButton} onPress={() => Stack.navigate('PatchUserDetails')}>
+                    <Text style = {styles.patchDetailsButtonText}>Update Details</Text>
+                  </TouchableOpacity>
+                  
+                </View>
+
+              
+
+                  <View style={{ flex: 1}}>
+
+                  <TouchableOpacity style = {styles.patchDetailsButton} onPress={() => Stack.navigate('PatchUserDetails')}>
+                    <Text style = {styles.patchDetailsButtonText}>Add Friends</Text>
+                  </TouchableOpacity>
+
+                  
+                  </View>
+              </View>
             </ScrollView>
       
         );    
@@ -44,6 +80,13 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+    },
+
+    headerText: {
+      alignSelf: 'center',
+      fontWeight: 'bold',
+      marginVertical: 15,
+      fontSize: 20,
     },
 
     space: {
@@ -65,17 +108,30 @@ const styles = StyleSheet.create({
       borderRadius: 5,
   },
 
-  submitButton: {
+  logoutButton: {
     alignSelf: 'center',
     padding: 12,
-    borderRadius: 5,
+    borderRadius: 10,
     backgroundColor: '#4267B2',
   },
 
-  buttonText: {
+  logoutButtonText: {
     alignSelf: 'center',
-    fontSize: 18,
-  }
+    fontSize: 15,
+    color: 'white',
+  },
+  patchDetailsButton: {
+    alignSelf: 'center',
+    padding: 12,
+    borderRadius: 10,
+    backgroundColor: '#4267B2',
+  },
+
+  patchDetailsButtonText: {
+    color: 'white',
+    alignSelf: 'center',
+    fontSize: 15,
+  },
 });
 
 export default Home;
