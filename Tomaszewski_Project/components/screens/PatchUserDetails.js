@@ -90,11 +90,14 @@ class PatchUserDetails extends Component {
 
 
 
-
+// Space padding allows for the InputBoxes to be seperate from the Stack Navigator's Header,
     render() {
+        
+        const Stack = this.props.navigation;
+
         return (
             <ScrollView style = {styles.container}> 
-
+                <View style = {styles.space}></View>
 
                 <View>
                     <TextInput style = {styles.userInput} placeholder={'First Name'}  
@@ -103,6 +106,8 @@ class PatchUserDetails extends Component {
                         placeholderTextColor='grey' 
                     />
 
+                    <View style = {styles.space}></View>
+
 
                     <TextInput style = {styles.userInput} placeholder={'Last Name'} 
                         onChangeText = {(lastName) => this.setState({lastName})} 
@@ -110,6 +115,7 @@ class PatchUserDetails extends Component {
                         placeholderTextColor='grey'  
                     />
 
+                    <View style = {styles.space}></View>
 
                     <TextInput style = {[styles.userInput]} placeholder={'Email'} 
                         onChangeText = {(email) => this.setState({email})} 
@@ -117,6 +123,7 @@ class PatchUserDetails extends Component {
                         placeholderTextColor='grey'   
                     />
 
+                    <View style = {styles.space}></View>
 
                     <TextInput style = {styles.userInput} placeholder={'Password'} secureTextEntry = {true} 
                         onChangeText = {(password) => this.setState({password})} 
@@ -127,9 +134,32 @@ class PatchUserDetails extends Component {
 
                 </View>    
 
+                <View style={styles.space}></View>
+
+               
+
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
+
+                <TouchableOpacity style = {styles.patchDetailsButton} onPress={() => Stack.navigate('Home')}>
+                    <Text style = {styles.patchDetailsButtonText}>Home</Text>
+                </TouchableOpacity>
+                
+                   
+                </View>
+
+
+                <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
+                <View style={{ flex: 1}}>
+
+
                 <TouchableOpacity  style = {styles.patchDetailsButton} onPress={() => this.patchUserDetails()}>
                     <Text style = {styles.patchDetailsButtonText}>Update</Text>
                 </TouchableOpacity>
+
+                  
+                  </View>
+              </View>
 
 
             </ScrollView>
@@ -156,6 +186,10 @@ const styles = StyleSheet.create({
       spaceButton: {
           padding:10,
         },
+
+    space: {
+        padding: 5,
+      },
   
       userInput: {
         alignSelf: "center",
