@@ -13,8 +13,8 @@ import React from 'react';
 import { Component } from 'react';
 
 // Functionality Imports
-import { ScrollView, StyleSheet, Text, TextInput } from 'react-native';
-
+import { ScrollView, StyleSheet, Text, TouchableOpacity, ToastAndroid } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 // State constructor initalise variables as state objects for later user input 
 class UserRegister extends Component {
@@ -26,21 +26,122 @@ class UserRegister extends Component {
             email: '',
             password: '',
         };
-    }
+      }
+
+      // POST API method, encapsulate user input && send to final values with JSON.Strigify method into /User endpoint
+        onClickRegister = () => {
+          let userCredentials = {
+              first_name: this.state.firstName,
+              last_name: this.state.lastName,
+              email: this.state.email,
+              password: this.state.password,
+          };
+
+
+          return fetch('http://10.0.2.2:3333/api/1.0.0/user', {
+              method: 'post',
+              headers: {'Content-Type': 'application/json',},
+              body: JSON.stringify(userCredentials),
+          })
+
+
+          // HTTP Reponse Codes based on user input, 201 == Created, 400 Bad Request, 500 Server etc
+          // Standard Android Toast short time frame pop up, to let user know that the request has reached the server
+          .then((server) => {
+              if(server.status === 201) { return server.json(); }
+              else if (server.status === 400) { throw "Bad Request"; }
+              else if (server.status === 500) {throw "Server Error"}
+              else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
+          })
+
+
+          // Prompt User on bottom of App with AndroidToast popup
+          .then((serverResponseJSON) => {
+              ToastAndroid.show("User Created!",ToastAndroid.SHORT);
+              this.props.navigation.navigate("Home");
+          })
+
+
+          // Console log exceptions for debugging
+          .catch((error) => {
+              console.log(error);
+              ToastAndroid.show(error, ToastAndroid.SHORT);
+          });
+      };
+      
 
 // Render objects on UserRegistry Screen (Main Screen if user is not signed in)   
     render() {
-        return (
+
+      const Stack = this.props.navigation;
+
+      return (
             <ScrollView style = {styles.container}>
-              <Text>TEST ! GREAT! </Text>
+              
+
+              <TextInput style = {styles.userInput} placeholder={'Name:'} 
+                  onChangeText = {(firstName) => this.setState({firstName})} 
+                  value={this.state.firstName} placeholderTextColor='#898F9C' 
+              />
+
+
+              <TextInput style = {styles.userInput} placeholder={'Surname:'} 
+                  onChangeText = {(lastName) => this.setState({lastName})} 
+                  value={this.state.lastName} placeholderTextColor='#898F9C'
+              />
+              
+
+              <TextInput style = {styles.userInput} placeholder={'Email:'} 
+                  onChangeText = {(email) => this.setState({email})} 
+                  value={this.state.email} placeholderTextColor='#898F9C'
+              />
+
+
+              <TextInput style = {styles.userInput} placeholder={'Password:'} 
+                  onChangeText = {(password) => this.setState({password})} 
+                  value={this.state.password} placeholderTextColor='#898F9C'
+                  secureTextEntry = {true} 
+              />
+
+
+              <TouchableOpacity  style = {styles.submitButton} onPress={() => this.onClickRegister()}> 
+                <Text style = {styles.buttonText}>Register!</Text>
+              </TouchableOpacity>
+
+
             </ScrollView>
         );    
     }
 }
 
+// Stylesheet for UserRegistery
 const styles = StyleSheet.create({
     container: {
+      flex: 1,
     },
+
+    userInput: {
+      alignSelf: "center",
+      justifyContent: 'center',
+      fontSize: 13,
+      fontWeight: 'bold',
+      height: 45,
+      width: 300,
+      backgroundColor: 'white',
+      borderRadius: 5,
+  },
+
+  submitButton: {
+    alignSelf: 'center',
+    padding: 12,
+    borderRadius: 5,
+    backgroundColor: '#4267B2',
+  },
+
+  buttonText: {
+    alignSelf: 'center',
+    fontSize: 18,
+  }
 });
 
 export default UserRegister;
