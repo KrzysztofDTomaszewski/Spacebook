@@ -1,7 +1,9 @@
 /* 
   Krzysztof Dawid Tomaszewski - 18044535
 
-  Home screen will load main app 
+  Home screen will load main app, once a user is either registered, or logged in.
+  This page will allow the user to add friends, view existing friends as well as, 
+  remove them and/or add profile photos to their own account.
 
 */
 

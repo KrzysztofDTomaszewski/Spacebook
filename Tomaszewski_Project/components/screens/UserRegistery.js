@@ -89,13 +89,11 @@ class UserRegister extends Component {
                   value={this.state.firstName} placeholderTextColor='#898F9C' 
               />
 
-
               <TextInput style = {styles.userInput} placeholder={'Surname:'} 
                   onChangeText = {(lastName) => this.setState({lastName})} 
                   value={this.state.lastName} placeholderTextColor='#898F9C'
               />
               
-
 
               <TextInput style = {styles.userInput} placeholder={'Email:'} 
                   onChangeText = {(email) => this.setState({email})} 
@@ -125,17 +123,12 @@ class UserRegister extends Component {
                   <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
                   <View style={{ flex: 1}}>
 
-                    <TouchableOpacity style = {styles.submitButton} onPress={() => Stack.navigate('UserLogin')}>
+                    <TouchableOpacity style = {styles.loginButton} onPress={() => Stack.navigate('UserLogin')}>
                       <Text style = {styles.buttonText}>Login</Text>
                    </TouchableOpacity>
 
                   </View>
               </View>
-
-              
-
-
-            
 
 
             </ScrollView>
@@ -146,6 +139,7 @@ class UserRegister extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      padding: 3,
     }, 
 
     logo: {
@@ -173,26 +167,27 @@ const styles = StyleSheet.create({
       width: 300,
       backgroundColor: 'white',
       borderRadius: 5,
+      marginVertical: 5,
   },
 
   submitButton: {
     alignSelf: 'center',
     padding: 12,
     borderRadius: 5,
-    backgroundColor: '#4267B2',
+    backgroundColor: 'grey',
   },
 
   loginButton: {
     alignSelf: 'center',
     padding: 12,
     borderRadius: 5,
-    backgroundColor: 'grey',
+    backgroundColor: '#4267B2',
   },
 
   buttonText: {
     color: 'white',
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 15,
   }
 });
 

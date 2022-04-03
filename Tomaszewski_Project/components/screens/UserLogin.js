@@ -108,7 +108,7 @@ class UserLogin extends Component {
                 <View style={{ flexDirection: "row" }}>
                   <View style={{ flex: 1 }}>
 
-                <TouchableOpacity  style = {styles.submitButton} onPress={() => this.onClickLogin()}>
+                <TouchableOpacity  style = {styles.loginButton} onPress={() => this.onClickLogin()}>
                     <Text style = {styles.buttonText}>Login!</Text>
                 </TouchableOpacity>
                    
@@ -118,7 +118,7 @@ class UserLogin extends Component {
                   <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
                   <View style={{ flex: 1}}>
 
-                <TouchableOpacity style = {styles.submitButton} onPress={() => Stack.navigate('UserRegistery')}>
+                <TouchableOpacity style = {styles.registerButton} onPress={() => Stack.navigate('UserRegistery')}>
                     <Text style = {styles.buttonText}>Register!</Text>
                 </TouchableOpacity>
 
@@ -160,7 +160,14 @@ const styles = StyleSheet.create({
       borderRadius: 10,
   },
 
-  submitButton: {
+  loginButton: {
+    alignSelf: 'center',
+    padding: 12,
+    borderRadius: 10,
+    backgroundColor: 'grey',
+  },
+
+  registerButton: {
     alignSelf: 'center',
     padding: 12,
     borderRadius: 10,
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 15,
   }
 });
 
