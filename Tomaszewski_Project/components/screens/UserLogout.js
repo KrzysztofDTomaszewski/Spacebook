@@ -11,7 +11,7 @@ import React from 'react';
 import { Component } from 'react';
 
 // Functionality Imports
-import { View, StyleSheet, ToastAndroid} from 'react-native';
+import { View, StyleSheet, ToastAndroid, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class UserLogout extends Component {
@@ -24,36 +24,37 @@ class UserLogout extends Component {
 
     killUserSession = async () => {
         const xAuthToken = await AsyncStorage.getItem('@session_token');
+        console.log("Session Ended "+xAuthToken);
 
         
-        console.log("Session Ended "+xAuthToken);
         return fetch('http://10.0.2.2:3333/api/1.0.0/logout', {
-            method: 'post',
+            method: 'POST',
             headers: {'X-Authorization': xAuthToken,}, 
         })
         .then(async(serverResponse) => {
-            if(serverResponse.status === 200) { 
+            if (serverResponse.status === 200) { 
                 await AsyncStorage.removeItem('@session_token');
-
-
                 ToastAndroid.show("Session Terminated",ToastAndroid.SHORT);
                 this.props.navigation.navigate("UserLogin");  
             }
-            else if (serverResponse.status === 400){ throw "Bad Request"; }
+            else if (serverResponse.status === 400) { 
+                throw "Bad Request"; 
+            }
 
-            else if (serverResponse.status === 500){ throw "Server Error"; }
+            else if (serverResponse.status === 500) { 
+                throw "Server Error"; 
+            }
 
-
-            else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
+            else { 
+                ToastAndroid.show(Error, ToastAndroid.SHORT); 
+            }
         })
     }
     
     render() {
         return (
             <View style = { styles.container }> 
-
-
-
+            <ActivityIndicator />
             </View>
         )
     }

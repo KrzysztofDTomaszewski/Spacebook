@@ -27,18 +27,27 @@ class PatchUserDetails extends Component {
     getUserDetails = async () => {
         const xAuthToken = await AsyncStorage.getItem('@session_token')
         const userID = await AsyncStorage.getItem('@id')
+
         console.log("Session Initiated/Ended " + xAuthToken)
         return fetch ('http://10.0.2.2:3333/api/1.0.0/user/'+ userID, {
             headers: {'Content-Type': 'application/json', 'X-Authorization': xAuthToken,},
         })
         .then((response) => {
-            if(response.status === 200) { return response.json(); }
+            if(response.status === 200) { 
+                return response.json(); 
+            }
 
-            else if (response.status === 404){ throw "Not Found"; }
+            else if (response.status === 404){ 
+                throw "Not Found"; 
+            }
 
-            else if (response.status === 500){ throw "Server Error"; }
+            else if (response.status === 500){ 
+                throw "Server Error";
+             }
 
-            else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
+            else { 
+                ToastAndroid.show(Error, ToastAndroid.SHORT); 
+            }
         })
         .then((serverResponseJSON) => {
             console.log(serverResponseJSON)
@@ -66,6 +75,7 @@ class PatchUserDetails extends Component {
         //Retireve User ID + session token from async storage for PATCH (Update) Request.
         const xAuthToken = await AsyncStorage.getItem('@session_token');
         const userID = await AsyncStorage.getItem('@id');
+
         return fetch('http://10.0.2.2:3333/api/1.0.0/user/'+ userID, {
             method: 'patch',
             headers: {'Content-Type': 'application/json', 'X-Authorization': xAuthToken,},
@@ -76,11 +86,17 @@ class PatchUserDetails extends Component {
                 this.props.navigation.navigate("Home");
                 ToastAndroid.show("Success!",ToastAndroid.SHORT); 
             }
-            else if (response.status === 400){ throw "Bad Request"; }
+            else if (response.status === 400){ 
+                throw "Bad Request"; 
+            }
 
-            else if (response.status === 500){ throw "Server Error"; }
+            else if (response.status === 500){ 
+                throw "Server Error"; 
+            }
 
-            else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
+            else { 
+                ToastAndroid.show(Error, ToastAndroid.SHORT); 
+            }
         })
         .catch((error) => {
             console.log(error);

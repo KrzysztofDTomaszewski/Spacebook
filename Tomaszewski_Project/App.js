@@ -20,6 +20,9 @@ import UserLogout from './components/screens/UserLogout';
 import PatchUserDetails from './components/screens/PatchUserDetails';
 import Account from './components/screens/Account';
 import Home from './components/screens/Home';
+import ResetApplication from './components/screens/ResetApplication';
+import UserPosts from './components/screens/UserPosts';
+import GetUserPosts from './components/screens/GetUserPosts';
 
 // Because RN is a pile of s
 import { LogBox } from 'react-native';
@@ -43,9 +46,12 @@ class App extends React.Component {
             <Stack.Screen name="UserRegistery" component={UserRegistery} options={{title: 'Spacebook Register'}}/>
             <Stack.Screen name="UserLogin" component={UserLogin} options={{title: 'Spacebook Login'}}/>
             <Stack.Screen name="UserLogout" component={UserLogout} options={{title: 'Logout'}}/>
-            <Stack.Screen name="Home" component={Home} options={{title: 'Home Page'}}/>
+            <Stack.Screen name="Home" component={Home} options={{title: 'Welcome to Spacebook!'}}/>
             <Stack.Screen name="PatchUserDetails" component={PatchUserDetails} options={{title: 'Patch Details'}}/>
             <Stack.Screen name="Account" component={Account} options={{title: 'Account Details'}}/>
+            <Stack.Screen name="ResetApplication" component={ResetApplication} options={{title: 'Reset Application'}}/>
+            <Stack.Screen name="UserPosts" component={UserPosts} options={{title: 'Send Post'}}/>
+            <Stack.Screen name="GetUserPosts" component={GetUserPosts} options={{title: 'Your Posts'}}/>
           
           </Stack.Navigator>
         </NavigationContainer>

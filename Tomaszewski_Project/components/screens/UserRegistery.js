@@ -1,4 +1,5 @@
 /* 
+
   Krzysztof Dawid Tomaszewski - 18044535
 
   UserRegistry screen will load first, initalise state objects for user: Name, Surname, Email and Password, 
@@ -48,22 +49,28 @@ class UserRegister extends Component {
           // HTTP Reponse Codes based on user input, 201 == Created, 400 Bad Request, 500 Server etc
           // Standard Android Toast short time frame pop up, to let user know that the request has reached the server
           .then((server) => {
-              if(server.status === 201) { return server.json(); }
+              if(server.status === 201) { 
+                return server.json(); 
+              }
 
-              else if (server.status === 400) { throw "Bad Request"; }
+              else if (server.status === 400) { 
+                throw "Bad Request"; 
+              }
               
-              else if (server.status === 500) {throw "Server Error"}
+              else if (server.status === 500) {
+                throw "Server Error"
+              }
 
-              else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
+              else { 
+                ToastAndroid.show(Error, ToastAndroid.SHORT); 
+              }
           })
 
 
           // Prompt User on bottom of App with AndroidToast popup
           .then((serverResponseJSON) => {
-
-
               ToastAndroid.show("Success!",ToastAndroid.SHORT);
-              this.props.navigation.navigate("Home");
+              this.props.navigation.navigate("UserLogin");
           })
 
 
@@ -112,21 +119,17 @@ class UserRegister extends Component {
 
               <View style={{ flexDirection: "row" }}>
                   <View style={{ flex: 1 }}>
-
                     <TouchableOpacity  style = {styles.submitButton} onPress={() => this.onClickRegister()}> 
-                        <Text style = {styles.buttonText}>Register</Text>
+                        <Text style = {styles.buttonText}>Register !</Text>
                     </TouchableOpacity>
-
                   </View>
 
 
                   <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
-                  <View style={{ flex: 1}}>
-
+                  <View style={{ flex: 1 }}>
                     <TouchableOpacity style = {styles.loginButton} onPress={() => Stack.navigate('UserLogin')}>
-                      <Text style = {styles.buttonText}>Login</Text>
+                      <Text style = {styles.buttonText}>Login !</Text>
                    </TouchableOpacity>
-
                   </View>
               </View>
 
@@ -174,14 +177,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 12,
     borderRadius: 5,
-    backgroundColor: 'grey',
+    backgroundColor: '#4267B2',
   },
 
   loginButton: {
     alignSelf: 'center',
     padding: 12,
     borderRadius: 5,
-    backgroundColor: '#4267B2',
+    backgroundColor: 'grey',
   },
 
   buttonText: {

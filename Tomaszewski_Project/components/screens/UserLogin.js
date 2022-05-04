@@ -23,7 +23,7 @@ class UserLogin extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            userID:'',
+            userID: '',
             email: '',
             password: '',
         };
@@ -47,24 +47,29 @@ class UserLogin extends Component {
 
     // HTTP response codes according to user input
         .then((server) => {
-            if(server.status === 200) { return server.json(); }
+            if (server.status === 200) { 
+                return server.json(); 
+            }
 
-            else if (server.status === 400){ throw "Incorrect Credentials"; }
+            else if (server.status === 400){ 
+                throw "Incorrect Credentials"; 
+            }
             
-            else if (server.status === 500) {throw "Server Error";}
+            else if (server.status === 500) {
+                throw "Server Error";
+            }
 
-            else { ToastAndroid.show(Error, ToastAndroid.SHORT); }
+            else { 
+                ToastAndroid.show(Error, ToastAndroid.SHORT); 
+            }
         })
 
 
     // AsyncStorage will use the session token, asociated with current user ID, once they sign in, it will keep it in memory for later authentication
         .then(async(serverResponseJSON) => {
             await AsyncStorage.setItem('@id', JSON.stringify(serverResponseJSON.id));
-
             await AsyncStorage.setItem('@session_token', serverResponseJSON.token);
-
-
-            ToastAndroid.show("Welcome Back!",ToastAndroid.SHORT);
+            ToastAndroid.show("Greetings Again!",ToastAndroid.SHORT);
             this.props.navigation.navigate("Home");
         })
 
@@ -77,15 +82,13 @@ class UserLogin extends Component {
 
 
     render() {
-
+        
         const Stack = this.props.navigation;
-
 
         return (
             <ScrollView style = {styles.container}> 
 
                 <View style={styles.paddingSpace}></View>
-
                 <TextInput style = {styles.userInput} placeholder={'Email'} 
                     placeholderTextColor='#898F9C'
                     onChangeText = {(email) => this.setState({email})}
@@ -94,7 +97,6 @@ class UserLogin extends Component {
                 />
 
                 <View style = {styles.textInputSpace}></View>
-
                 <TextInput style = {styles.userInput} placeholder={'Password'} 
                     placeholderTextColor='#898F9C'
                     secureTextEntry = {true} 
@@ -103,27 +105,21 @@ class UserLogin extends Component {
                 />
 
 
-                <View style = {styles.spaceButton}></View>
-                
+                <View style = {styles.spaceButton}></View> 
                 <View style={{ flexDirection: "row" }}>
                   <View style={{ flex: 1 }}>
-
                 <TouchableOpacity  style = {styles.loginButton} onPress={() => this.onClickLogin()}>
-                    <Text style = {styles.buttonText}>Login!</Text>
-                </TouchableOpacity>
-                   
+                    <Text style = {styles.buttonText}>Login !</Text>
+                </TouchableOpacity>    
                 </View>
 
 
-                  <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
-                  <View style={{ flex: 1}}>
-
+                <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
+                <View style={{ flex: 1}}>
                 <TouchableOpacity style = {styles.registerButton} onPress={() => Stack.navigate('UserRegistery')}>
-                    <Text style = {styles.buttonText}>Register!</Text>
-                </TouchableOpacity>
-
-                  
-                  </View>
+                    <Text style = {styles.buttonText}>Register !</Text>
+                </TouchableOpacity>    
+                </View>
               </View>
 
             </ScrollView>
@@ -164,14 +160,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 12,
     borderRadius: 10,
-    backgroundColor: 'grey',
+    backgroundColor: '#4267B2',
   },
 
   registerButton: {
     alignSelf: 'center',
     padding: 12,
     borderRadius: 10,
-    backgroundColor: '#4267B2',
+    backgroundColor: 'grey',
   },
 
   buttonText: {
